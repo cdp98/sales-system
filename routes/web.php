@@ -16,4 +16,5 @@ use App\Http\Controllers\SalesController;
 
 Route::get('/new-sale', [SalesController::class, 'products'])->name('new-sale');
 Route::get('/sales', [SalesController::class, 'index'])->name('index');
-Route::post('/get-address', [SalesController::class, 'getCep'])->name('getCep');
+Route::post('/get-address', [SalesController::class, 'getCep'])->name('get-cep');
+Route::post('/save-sale', [SalesController::class, 'newSale'])->name('save-sale');
