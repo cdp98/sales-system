@@ -16,10 +16,10 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Preço</th>
-                        <th scope="col">Fornecedores</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Itens</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Data</th>
                     </tr>
                 </thead>
                 <tbody>

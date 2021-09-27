@@ -20,4 +20,14 @@ class Product extends Model
         'reference',
         'price'
     ];
+
+    public function providers()
+    {
+        return $this->belongsToMany(
+            \App\Models\Provider::class,
+            $tableName= 'product_providers',
+            $currentModelField = 'product_id',
+            $joinedModelField = 'provider_id'
+        );
+    }
 }
