@@ -16,7 +16,7 @@ class Sale extends Model
      */
     protected $fillable = [
         'id',
-        'adrres_delivery',
+        'address_delivery',
         'total_price',
         'sale_date'
     ];
