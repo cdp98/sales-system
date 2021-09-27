@@ -39,4 +39,14 @@ class SalesController extends Controller
     {
 
     }
+
+    public function getCep(Request $request)
+    {
+        $cep = $request->cep;
+        $url = "https://viacep.com.br/ws/".$cep."/json/";
+        $cepJson = file_get_contents($url);
+        $ender = json_decode($cepJson);
+
+        return $ender;
+    }
 }

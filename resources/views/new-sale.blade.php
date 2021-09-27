@@ -64,6 +64,11 @@
                                 <label for="cep">CEP</label>
                                 <input type="text" class="form-control js-mask-cep" id="cep" placeholder="CEP">
                             </div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12 ml-auto text-center" id="ender" style="margin: auto !important;"></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -75,7 +80,7 @@
         </div>
 
         <!-- Principal JavaScript do Bootstrap -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.11.2/jquery.mask.min.js"></script>
@@ -88,7 +93,6 @@
                     name = $('#name-'+id).text();
                     tbody = $('#tbody-table-js');
                     providers = $(this).data('providers');
-                    console.log(providers);
                     newProviders = '';
                     html = `<tr>
                                 <th scope="row">`+id+`</th>
@@ -123,7 +127,23 @@
             if (element.length > 0) {
                 element.mask('00000-000', {
                     onComplete: function (cep) {
-                        console.log(cep);
+                        $.ajax({
+                            type: 'POST',
+                            url: 'get-address',
+                            data: {
+                                'cep': cep,
+                                '_method': "POST",
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            dataType:'JSON',
+                            success:function(response) {
+                                var ender = `<p style="margin-bottom: 0;">`+response.logradouro+`</p>
+                                            <p style="margin-bottom: 0;">`+response.bairro+` - `+response.cep+`</p>
+                                            <p style="margin-bottom: 0;">`+response.localidade+` / `+response.uf+`</p>`;
+
+                                $('#ender').html(ender);
+                            }
+                        });
                     },
                     onInvalid: function (val, e, f, invalid, options) {
                         var error = invalid[0]
