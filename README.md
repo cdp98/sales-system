@@ -1,64 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Sistema de vendas
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Creating tables
+```
+php artisan migrate
+```
 
-## About Laravel
+## Inserts
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### products
+```
+INSERT INTO `products` (`id`, `name`, `reference`, `price`, `created_at`, `updated_at`) VALUES
+(1, 'Caderno', 'CADE', '17.00', '2021-09-25 15:04:21', '2021-09-25 15:04:21'),
+(2, 'Caneta', 'CANE', '2.50', '2021-09-25 15:04:58', '2021-09-25 15:04:58'),
+(3, 'Lápis', 'LAP', '1.25', '2021-09-25 15:05:31', '2021-09-25 15:05:31'),
+(4, 'Borracha', 'BORR', '1.15', '2021-09-25 15:04:21', '2021-09-25 15:07:35');
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### product_providers
+```
+INSERT INTO `product_providers` (`id`, `product_id`, `provider_id`, `created_at`, `updated_at`) VALUES
+(1, 4, 1, '2021-09-25 15:17:40', '2021-09-25 15:17:40'),
+(2, 4, 4, '2021-09-25 15:17:40', '2021-09-25 15:17:40'),
+(3, 1, 3, '2021-09-25 15:18:13', '2021-09-25 15:18:13'),
+(4, 1, 4, '2021-09-25 15:18:13', '2021-09-25 15:18:13'),
+(5, 2, 2, '2021-09-25 15:18:41', '2021-09-25 15:18:41');
+```
 
-## Learning Laravel
+### providers
+```
+INSERT INTO `providers` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Fornecedor1', '2021-09-25 15:08:35', '2021-09-25 15:08:35'),
+(2, 'Fornecedor2', '2021-09-25 15:08:35', '2021-09-25 15:08:35'),
+(3, 'Fornecedor3', '2021-09-25 15:11:33', '2021-09-25 15:11:33'),
+(4, 'Fornecedor4', '2021-09-25 15:12:09', '2021-09-25 15:12:09');
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## How to use
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Add the products to the sales table, at the end inform the zip code and the date of sale
