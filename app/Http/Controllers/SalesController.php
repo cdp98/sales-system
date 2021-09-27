@@ -31,7 +31,7 @@ class SalesController extends Controller
     {
         $sales = $this->sale->all();
         
-        return view('sales');
+        return view('sales', ['sales' => $sales]);
     }   
 
     public function products()

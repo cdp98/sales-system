@@ -23,24 +23,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($sales as $sale)    
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row">{{ $sale->id }}</th>
+                        <td>{{ implode(', ', $sale->products->pluck('name')->toArray()) }}</td>
+                        <td>{{ $sale->total_price }}</td>
+                        <td>{{ $sale->sale_date }}</td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
             <div class="row justify-content-end">

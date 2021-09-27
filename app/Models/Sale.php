@@ -20,4 +20,14 @@ class Sale extends Model
         'total_price',
         'sale_date'
     ];
+
+    public function products()
+    {
+        return $this->belongsToMany(
+            \App\Models\Product::class,
+            $tableName= 'sale_products',
+            $currentModelField = 'sale_id',
+            $joinedModelField = 'product_id'
+        );
+    }
 }
